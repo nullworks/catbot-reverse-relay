@@ -171,11 +171,6 @@ client.on("message", function(msg) {
 		return;
 	}
 	
-	if (filter_int(split[1]) == NaN) {
-		msg.reply("invalid ID.");
-		return;
-	}
-	
 	if (split[1] == "*") {
 		request.post(
 		{
