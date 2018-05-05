@@ -1,0 +1,9 @@
+{
+	"token": "example of private config",
+	
+	"testing_mode": false,
+	"testing_whitelist": 
+	{
+		"discord id": true
+	}
+}

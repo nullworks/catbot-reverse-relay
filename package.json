@@ -1,0 +1,24 @@
+{
+  "name": "catbot-reverse-relay",
+  "version": "1.0.0",
+  "description": "Created for 2-way chatting between Discord and TF2.",
+  "main": "index.js",
+  "dependencies": {
+    "discord.js": "^11.3.2",
+    "request": "^2.85.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nullworks/catbot-reverse-relay.git"
+  },
+  "author": "dogecore",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nullworks/catbot-reverse-relay/issues"
+  },
+  "homepage": "https://github.com/nullworks/catbot-reverse-relay#readme"
+}
