@@ -66,11 +66,11 @@ client.on("message", function (msg) {
 
 	if (!process_cooldown(msg.author.id)) return;
 
-	msg.delete();
-	msg.reply("Available Commands:").then(msg => msg.delete({timeout: 10000}));
-	msg.channel.send("```$$send:\ncommand usage: $$send ID TEXT\nexample: $$send 1 hi!```").then(msg => msg.delete({timeout: 10000}));
-	msg.channel.send("```$$cmd:\ncommand usage: $$cmd ID TEXT\nexample: $$send 1 cat_ipc_id```").then(msg => msg.delete({timeout: 10000}));
-	msg.channel.send("You are also able to mass-send - use * as ID").then(msg => msg.delete({timeout: 10000}));
+	console.log("Should have deleted")
+	msg.reply("Available Commands:").then(msg => console.log("Should have deleted"));
+	msg.channel.send("```$$send:\ncommand usage: $$send ID TEXT\nexample: $$send 1 hi!```").then(msg => console.log("Should have deleted"));
+	msg.channel.send("```$$cmd:\ncommand usage: $$cmd ID TEXT\nexample: $$send 1 cat_ipc_id```").then(msg => console.log("Should have deleted"));
+	msg.channel.send("You are also able to mass-send - use * as ID").then(msg => console.log("Should have deleted"));
 })
 
 client.on("message", function (msg) {
@@ -122,12 +122,12 @@ client.on("message", function (msg) {
 					if (bd.status == "error") {
 						msg.channel.send("Error: IPC processing error (" + bd.error + ")");
 					} else {
-						msg.guild.channels.cache.find(channel => channel.name === "tf2-chat-relay").send("``[RELAY ALL]`` **" + msg.author.tag + ":** " + msg.cleanContent.substring(8 + split[1].length));
-						msg.channel.send("Message sent!").then((msg) => { msg.delete({ timeout: 3000 }); });
+						msg.guild.channels.cache.find(channel => channel.name === "tf2-chat-relay").send("``[RELAY ALL]`` **" + msg.author.tag + ":** " + msg.cleanContent.substring(8 + split[1].length));        
+						msg.channel.send("Message sent!").then((msg) => { console.log("Should have deleted") });
 					}
 				});
 		} else {
-			msg.reply("you require the \"IPC\" Role to use * as an ID.").then((msg) => { msg.delete({ timeout: 3000 }) });
+			msg.reply("you require the \"IPC\" Role to use * as an ID.").then((msg) => { console.log("Should have deleted") });
 			if (!msg.guild.roles.cache.find(role => role.name === "IPC"))
 				msg.guild.roles.create({ data: { name: "IPC" } });
 		}
@@ -166,8 +166,8 @@ client.on("message", function (msg) {
 			if (bd.status == "error") {
 				msg.channel.send("Error: IPC processing error (" + bd.error + ")");
 			} else {
-				msg.guild.channels.find("name", "tf2-chat-relay").send("``[RELAY ID " + split[1] + "]`` **" + msg.author.tag + ":** " + msg.cleanContent.substring(8 + split[1].length));
-				msg.channel.send("Message sent!").then((msg) => { msg.delete({ timeout: 3000 }); });
+				msg.guild.channels.cache.find(channel => channel.name === "tf2-chat-relay").send("``[RELAY ID " + split[1] + "]`` **" + msg.author.tag + ":** " + msg.cleanContent.substring(8 + split[1].length));
+				msg.channel.send("Message sent!").then((msg) => { console.log("Should have deleted"); });
 			}
 		});
 
@@ -226,7 +226,7 @@ client.on("message", function (msg) {
 				if (bd.status == "error") {
 					msg.channel.send("Error: IPC processing error (" + bd.error + ")");
 				} else {
-					msg.channel.send("Command sent!").then((msg) => { msg.delete({ timeout: 3000 }); });
+					msg.channel.send("Command sent!").then((msg) => { console.log("Should have deleted"); });
 				}
 			});
 
@@ -264,7 +264,7 @@ client.on("message", function (msg) {
 			if (bd.status == "error") {
 				msg.channel.send("Error: IPC processing error (" + bd.error + ")");
 			} else {
-				msg.channel.send("Command sent!").then((msg) => { msg.delete({ timeout: 3000 }); });
+				msg.channel.send("Command sent!").then((msg) => { console.log("Should have deleted"); });
 			}
 		});
 });
@@ -274,7 +274,7 @@ client.on("message", function (msg) {
 	if (msg.author.bot) return;
 	if (!(msg.channel.name == "tf2-chat-relay")) return;
 
-	msg.delete();
+	console.log("Should have deleted");
 });
 
 client.login(config.token);
